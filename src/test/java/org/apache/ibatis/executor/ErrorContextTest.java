@@ -40,7 +40,7 @@ class ErrorContextTest {
     context.toString().startsWith("### Here's more info.");
     context.reset();
 
-    context.cause(new Exception("test"));
+    context.cause(new Exception("com/monk"));
     context.toString().startsWith("### Cause: java.lang.Exception: test");
     context.reset();
 

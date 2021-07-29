@@ -177,8 +177,8 @@ class MetaObjectTest {
   @Test
   void shouldSetAndGetProperties() {
     MetaObject object = SystemMetaObject.forObject(new Author());
-    object.setValue("email", "test");
-    assertEquals("test", object.getValue("email"));
+    object.setValue("email", "com/monk");
+    assertEquals("com/monk", object.getValue("email"));
 
   }
 

@@ -40,7 +40,7 @@ class MyBatisTest {
   @Test
   void test() {
     try (SqlSession session = sqlSessionFactory.openSession()) {
-      ParentBean parentBean = session.selectOne("test");
+      ParentBean parentBean = session.selectOne("com/monk");
       Assertions.assertEquals("p1", parentBean.getName());
     }
   }

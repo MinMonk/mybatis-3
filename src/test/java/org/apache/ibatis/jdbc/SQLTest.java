@@ -305,7 +305,7 @@ class SQLTest {
   @Test
   void selectUsingLimitVariableName() {
     final String sql = new SQL() {{
-      SELECT("*").FROM("test").ORDER_BY("id").LIMIT("#{limit}");
+      SELECT("*").FROM("com/monk").ORDER_BY("id").LIMIT("#{limit}");
     }}.toString();
 
     assertEquals("SELECT *\nFROM test\nORDER BY id LIMIT #{limit}", sql);
@@ -314,7 +314,7 @@ class SQLTest {
   @Test
   void selectUsingOffsetVariableName() {
     final String sql = new SQL() {{
-      SELECT("*").FROM("test").ORDER_BY("id").OFFSET("#{offset}");
+      SELECT("*").FROM("com/monk").ORDER_BY("id").OFFSET("#{offset}");
     }}.toString();
 
     assertEquals("SELECT *\nFROM test\nORDER BY id OFFSET #{offset}", sql);
@@ -323,7 +323,7 @@ class SQLTest {
   @Test
   void selectUsingLimitAndOffset() {
     final String sql = new SQL() {{
-      SELECT("*").FROM("test").ORDER_BY("id").LIMIT(20).OFFSET(100);
+      SELECT("*").FROM("com/monk").ORDER_BY("id").LIMIT(20).OFFSET(100);
     }}.toString();
 
     assertEquals("SELECT *\nFROM test\nORDER BY id LIMIT 20 OFFSET 100", sql);
@@ -332,7 +332,7 @@ class SQLTest {
   @Test
   void updateUsingLimit() {
     final String sql = new SQL() {{
-      UPDATE("test").SET("status = #{updStatus}").WHERE("status = #{status}").LIMIT(20);
+      UPDATE("com/monk").SET("status = #{updStatus}").WHERE("status = #{status}").LIMIT(20);
     }}.toString();
 
     assertEquals("UPDATE test\nSET status = #{updStatus}\nWHERE (status = #{status}) LIMIT 20", sql);
@@ -341,7 +341,7 @@ class SQLTest {
   @Test
   void deleteUsingLimit() {
     final String sql = new SQL() {{
-      DELETE_FROM("test").WHERE("status = #{status}").LIMIT(20);
+      DELETE_FROM("com/monk").WHERE("status = #{status}").LIMIT(20);
     }}.toString();
 
     assertEquals("DELETE FROM test\nWHERE (status = #{status}) LIMIT 20", sql);
@@ -350,7 +350,7 @@ class SQLTest {
   @Test
   void selectUsingFetchFirstRowsOnlyVariableName() {
     final String sql = new SQL() {{
-      SELECT("*").FROM("test").ORDER_BY("id").FETCH_FIRST_ROWS_ONLY("#{fetchFirstRows}");
+      SELECT("*").FROM("com/monk").ORDER_BY("id").FETCH_FIRST_ROWS_ONLY("#{fetchFirstRows}");
     }}.toString();
 
     assertEquals("SELECT *\nFROM test\nORDER BY id FETCH FIRST #{fetchFirstRows} ROWS ONLY", sql);
@@ -359,7 +359,7 @@ class SQLTest {
   @Test
   void selectUsingOffsetRowsVariableName() {
     final String sql = new SQL() {{
-      SELECT("*").FROM("test").ORDER_BY("id").OFFSET_ROWS("#{offsetRows}");
+      SELECT("*").FROM("com/monk").ORDER_BY("id").OFFSET_ROWS("#{offsetRows}");
     }}.toString();
 
     assertEquals("SELECT *\nFROM test\nORDER BY id OFFSET #{offsetRows} ROWS", sql);
@@ -368,7 +368,7 @@ class SQLTest {
   @Test
   void selectUsingOffsetRowsAndFetchFirstRowsOnly() {
     final String sql = new SQL() {{
-      SELECT("*").FROM("test").ORDER_BY("id").OFFSET_ROWS(100).FETCH_FIRST_ROWS_ONLY(20);
+      SELECT("*").FROM("com/monk").ORDER_BY("id").OFFSET_ROWS(100).FETCH_FIRST_ROWS_ONLY(20);
     }}.toString();
 
     assertEquals("SELECT *\nFROM test\nORDER BY id OFFSET 100 ROWS FETCH FIRST 20 ROWS ONLY", sql);

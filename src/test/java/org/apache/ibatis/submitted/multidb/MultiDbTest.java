@@ -82,7 +82,7 @@ class MultiDbTest {
   void shouldInsertInCommonWithSelectKey() {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       MultiDbMapper mapper = sqlSession.getMapper(MultiDbMapper.class);
-      mapper.insert(new User(2, "test"));
+      mapper.insert(new User(2, "com/monk"));
       String answer = mapper.select2(1);
       assertEquals("common", answer);
     }
@@ -92,7 +92,7 @@ class MultiDbTest {
   void shouldInsertInCommonWithSelectKey2() {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
       MultiDbMapper mapper = sqlSession.getMapper(MultiDbMapper.class);
-      mapper.insert2(new User(2, "test"));
+      mapper.insert2(new User(2, "com/monk"));
       String answer = mapper.select2(1);
       assertEquals("common", answer);
     }

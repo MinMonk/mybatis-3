@@ -31,14 +31,14 @@ class CacheBuilderTest {
 
   @Test
   void testInitializing() {
-    InitializingCache cache = unwrap(new CacheBuilder("test").implementation(InitializingCache.class).build());
+    InitializingCache cache = unwrap(new CacheBuilder("com/monk").implementation(InitializingCache.class).build());
 
     Assertions.assertThat(cache.initialized).isTrue();
   }
 
   @Test
   void testInitializingFailure() {
-    when(() -> new CacheBuilder("test").implementation(InitializingFailureCache.class).build());
+    when(() -> new CacheBuilder("com/monk").implementation(InitializingFailureCache.class).build());
     then(caughtException()).isInstanceOf(CacheException.class)
       .hasMessage("Failed cache initialization for 'test' on 'org.apache.ibatis.mapping.CacheBuilderTest$InitializingFailureCache'");
   }

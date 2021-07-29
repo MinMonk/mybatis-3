@@ -32,7 +32,7 @@ class ManyAnnoTest extends BaseDataTest {
 
   @Test
   void testGetMessageForEmptyDatabase() throws Exception {
-    final Environment environment = new Environment("test", new JdbcTransactionFactory(),
+    final Environment environment = new Environment("com/monk", new JdbcTransactionFactory(),
         BaseDataTest.createBlogDataSource());
     final Configuration config = new Configuration(environment);
     config.addMapper(PostMapper.class);

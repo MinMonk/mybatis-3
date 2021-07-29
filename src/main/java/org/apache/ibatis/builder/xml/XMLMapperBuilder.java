@@ -99,6 +99,7 @@ public class XMLMapperBuilder extends BaseBuilder {
 
     parsePendingResultMaps();
     parsePendingCacheRefs();
+    // 处理SQL
     parsePendingStatements();
   }
 
