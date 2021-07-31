@@ -133,6 +133,7 @@ public abstract class BaseExecutor implements Executor {
   public <E> List<E> query(MappedStatement ms, Object parameter, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException {
     BoundSql boundSql = ms.getBoundSql(parameter);
     CacheKey key = createCacheKey(ms, parameter, rowBounds, boundSql);
+    System.out.println("使用CachingExecutor...");
     return query(ms, parameter, rowBounds, resultHandler, key, boundSql);
   }
 

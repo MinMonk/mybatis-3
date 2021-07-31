@@ -113,6 +113,11 @@ public class XNode {
     return xpathParser.evalNodes(node, expression);
   }
 
+  /**
+   * 调用了这个方法，就会完成${}值的替换，替换为properties中设置的值
+   * @param expression
+   * @return
+   */
   public XNode evalNode(String expression) {
     return xpathParser.evalNode(node, expression);
   }
@@ -340,6 +345,11 @@ public class XNode {
     return attributes;
   }
 
+  /**
+   * 完成${}值的替换，将${}直接替换为具体的值
+   * @param node
+   * @return
+   */
   private String parseBody(Node node) {
     String data = getBodyData(node);
     if (data == null) {

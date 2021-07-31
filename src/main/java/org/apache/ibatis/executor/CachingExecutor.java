@@ -86,6 +86,7 @@ public class CachingExecutor implements Executor {
   public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler) throws SQLException {
     BoundSql boundSql = ms.getBoundSql(parameterObject);
     CacheKey key = createCacheKey(ms, parameterObject, rowBounds, boundSql);
+    System.out.println("使用CachingExecutor...");
     return query(ms, parameterObject, rowBounds, resultHandler, key, boundSql);
   }
 

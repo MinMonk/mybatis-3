@@ -17,21 +17,13 @@
     ID, NAME, AGE
   </sql>
 
-  <select id="listUser" resultMap="TEST_USER">
+  <select id="listUser" resultMap="TEST_USER" useCache="false">
     SELECT
     <include refid="baseColumn"/>
     FROM TEST_USER
     WHERE ID = #{id}
-    AND AGE <![CDATA[ >= ]]> #{age}
+    AND AGE <![CDATA[ >= ]]> ${age}
   </select>
 
-  <select id="listUserByCreateDate" resultMap="TEST_USER">
-    SELECT
-    <include refid="baseColumn"/>
-    FROM TEST_USER
-    <if test="startDate != null">
-      AND CREATED_DATE <![CDATA[ >= ]]>
-      #{startDate}
-    </if>
-  </select>
+
 </mapper>

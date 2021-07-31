@@ -3,12 +3,14 @@ package com.monk;
 import com.monk.bean.TestUser;
 import com.monk.mapper.UserMapper;
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.ExecutorType;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
@@ -29,8 +31,12 @@ public class TestUserMapper {
     SqlSession sqlSession = sqlSessionFactory.openSession();
     UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
     List<TestUser> userList = userMapper.listUser(1L, 10);
+
+    //这条语句就会走缓存  不会去数据库查询
+    List<TestUser> user2List = userMapper.listUser(1L, 10);
     System.out.println(userList.size());
     userList.stream().forEach(System.out::println);
+
   }
 
 }

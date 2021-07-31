@@ -32,6 +32,7 @@ public class GenericTokenParser {
 
   /**
    * 在这个方法中将"#{}"替换为"?"
+   * 或者将${}替换为具体的值
    * @param text
    * @return
    */
