@@ -36,6 +36,10 @@ public class DynamicSqlSource implements SqlSource {
   @Override
   public BoundSql getBoundSql(Object parameterObject) {
     DynamicContext context = new DynamicContext(configuration, parameterObject);
+    /**
+     * 这个方法是在准备执行SQL的时候，从SqlSource对象中getBoundSQL时调用的，在apply方法中去解析动态SQL
+     * 将<if>这种标签去掉，拼上符合条件的sql语句   使用了Ognl的jar
+     */
     rootSqlNode.apply(context);
     SqlSourceBuilder sqlSourceParser = new SqlSourceBuilder(configuration);
     Class<?> parameterType = parameterObject == null ? Object.class : parameterObject.getClass();
