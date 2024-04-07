@@ -73,6 +73,7 @@ public class ParameterExpression extends HashMap<String, String> {
 
   private int skipWS(String expression, int p) {
     for (int i = p; i < expression.length(); i++) {
+      // 在 ASCII 编码中，0x20 对应的是空格字符
       if (expression.charAt(i) > 0x20) {
         return i;
       }

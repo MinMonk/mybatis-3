@@ -82,6 +82,7 @@ import org.apache.ibatis.mapping.StatementType;
 import org.apache.ibatis.parsing.PropertyParser;
 import org.apache.ibatis.reflection.TypeParameterResolver;
 import org.apache.ibatis.scripting.LanguageDriver;
+import org.apache.ibatis.scripting.xmltags.DynamicSqlSource;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
@@ -131,6 +132,7 @@ public class MapperAnnotationBuilder {
         try {
           // issue #237
           if (!method.isBridge()) {
+            // 在该方法内部处理 SQL
             parseStatement(method);
           }
         } catch (IncompleteElementException e) {
@@ -462,6 +464,13 @@ public class MapperAnnotationBuilder {
         }
         Annotation sqlAnnotation = method.getAnnotation(sqlAnnotationType);
         final String[] strings = (String[]) sqlAnnotation.getClass().getMethod("value").invoke(sqlAnnotation);
+        /**
+         * 这里在 mybatis 启动时，将解析扫描到的 Mapper
+         * 1. SQL 中只有#{}这种占位符，将会在解析时将其替换为 ? 占位符放入到缓存中
+         * 2. SQL 中只要含有${}这种动态占位符，解析时会视其为动态 SQL，将不做处理
+         * 会等到实际去执行 SQL 时，才会代理对象中去将${}占位符替换为实际的值
+         * @see DynamicSqlSource#getBoundSql(java.lang.Object)
+          */
         return buildSqlSourceFromStrings(strings, parameterType, languageDriver);
       } else if (sqlProviderAnnotationType != null) {
         Annotation sqlProviderAnnotation = method.getAnnotation(sqlProviderAnnotationType);

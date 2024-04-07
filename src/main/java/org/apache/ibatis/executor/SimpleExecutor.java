@@ -58,7 +58,9 @@ public class SimpleExecutor extends BaseExecutor {
     Statement stmt = null;
     try {
       Configuration configuration = ms.getConfiguration();
+      // 构建一个StatementHandler，这里可以用到XML中配置的 plugins -> interceptor 拦截器
       StatementHandler handler = configuration.newStatementHandler(wrapper, ms, parameter, rowBounds, resultHandler, boundSql);
+      // 初始化Statement对象
       stmt = prepareStatement(handler, ms.getStatementLog());
       return handler.<E>query(stmt, resultHandler);
     } finally {
@@ -82,7 +84,9 @@ public class SimpleExecutor extends BaseExecutor {
   private Statement prepareStatement(StatementHandler handler, Log statementLog) throws SQLException {
     Statement stmt;
     Connection connection = getConnection(statementLog);
+    // 设置PreparedStatement相关参数（超时和批处理）
     stmt = handler.prepare(connection, transaction.getTimeout());
+    // 填充PreparedStatement中的?占位符参数
     handler.parameterize(stmt);
     return stmt;
   }

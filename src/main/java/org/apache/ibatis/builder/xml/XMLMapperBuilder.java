@@ -410,6 +410,7 @@ public class XMLMapperBuilder extends BaseBuilder {
           // to prevent loading again this resource from the mapper interface
           // look at MapperAnnotationBuilder#loadXmlResource
           configuration.addLoadedResource("namespace:" + namespace);
+          // 在此处对方法上的@Select等注解进行解析
           configuration.addMapper(boundType);
         }
       }
